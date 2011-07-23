@@ -1,0 +1,3 @@
+Peter -> John: 10
+Fred -> John: 20
+John -> Michael: 30

@@ -1,0 +1,3 @@
+Peter -> John: 25.0
+John -> Michael: 40.0
+Michael -> Fred: 25.0

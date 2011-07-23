@@ -1,0 +1,13 @@
+# direct debts
+Peter -> John: 10
+Fred -> Peter: 20
+
+# everyone should pay Fred
+* -> Fred: 50
+# John should pay everyone
+John -> *: 25
+
+# Who's in everyone beside the guys above
+Michael
+Chris
+

@@ -1,0 +1,2 @@
+Fred -> Michael: 20.0
+Peter -> Michael: 10.0

@@ -1,0 +1,4 @@
+John -> Fred: 20.0
+Chris -> Michael: 5.0
+Michael -> Peter: 10.0
+Peter -> Fred: 5.0
