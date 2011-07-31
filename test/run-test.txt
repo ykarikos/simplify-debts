@@ -1,0 +1,23 @@
+# Robot test suite for simplify.py
+
+***Settings***
+Library     OperatingSystem
+
+***Variables***
+${PROG}  ${CURDIR}${/}..${/}src${/}simplify.py
+
+***Test Cases***
+Simplify all  [Documentation]  Run simplify for all test files
+    @{inputFiles} =  List Files In Directory  input
+    :FOR  ${inputFile}  IN  @{inputFiles}
+    \    Should Exist  input${/}${inputFile}
+    \    Should Exist  output${/}${inputFile}
+    \    Simplify  ${inputFile}
+
+
+***Keywords***
+Simplify    [Documentation]  Run simplify for given input file and given return code
+    [Arguments]  ${input}
+    ${output} =  Run  ${PROG} <input${/}${input}
+    ${expectedOutput} =  Get File  output${/}${input}
+    Should Be Equal As Strings  ${output}\n  ${expectedOutput}
