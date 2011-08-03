@@ -2,6 +2,7 @@
 
 ***Settings***
 Library     OperatingSystem
+Library	    MyKeywords
 
 ***Variables***
 ${PROG}  ${CURDIR}${/}..${/}src${/}simplify.py
@@ -18,6 +19,6 @@ Simplify all  [Documentation]  Run simplify for all test files
 ***Keywords***
 Simplify    [Documentation]  Run simplify for given input file and given return code
     [Arguments]  ${input}
-    ${output} =  Run  ${PROG} <input${/}${input}
+    ${output} =  Run Cmd  ${PROG} <input${/}${input}
     ${expectedOutput} =  Get File  output${/}${input}
-    Should Be Equal As Strings  ${output}\n  ${expectedOutput}
+    Should Be Equal As Strings  ${output}  ${expectedOutput}
