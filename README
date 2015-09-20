@@ -1,1 +1,28 @@
 Simplify debts by minimizing transactions. The algorithm does not aim in minimizing transaction amounts but only the number of transactions.
+
+
+Run:
+----
+
+1. Create debts file, e.g. debts.txt:
+# Everyone owns Joe
+* -> Joe: 16.80
+Sue -> Joe: 24.40
+Bob -> Sue: 12.20
+# Ellen is part of everyone
+Ellen
+
+2. Run:
+$ src/simplify.py <debts.txt
+ob -> Joe: 16.4
+Sue -> Joe: 16.4
+Ellen -> Joe: 4.2
+
+
+Run tests:
+----------
+
+Robot framework required (http://robotframework.org/)
+
+$ cd test
+$ pybot run-test.txt
