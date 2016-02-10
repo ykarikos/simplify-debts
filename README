@@ -5,7 +5,7 @@ Run:
 ----
 
 1. Create debts file, e.g. debts.txt:
-# Everyone owns Joe
+# Everyone owes Joe
 * -> Joe: 16.80
 Sue -> Joe: 24.40
 Bob -> Sue: 12.20
