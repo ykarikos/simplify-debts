@@ -19,11 +19,19 @@
 
 import sys
 import re
+import argparse
 
-def printEdges(edges):
+def printEdges(edges, graphviz):
+    if graphviz:
+        print "Digraph G {"
     for edge in edges:
         edge.normalize()
-        print edge.toString()
+        if graphviz:
+            print edge.toGraphvizString()
+        else:
+            print edge.toString()
+    if graphviz:
+        print "}"
 
 def addWeight(weights, nodeName, weightDelta):
     try:
@@ -94,7 +102,7 @@ def removeZeroWeights(w):
             i += 1
 
 
-def splitStarNodes(edges, emptyNodes):
+def splitStarNodes(edges, emptyNodes, verbose):
     nodes = emptyNodes
     for edge in edges:
         if edge.startNode != "*":
@@ -148,6 +156,10 @@ class Edge:
         self.endNode = endNode
         self.weight = weight
  
+    def toGraphvizString(self):
+        return self.startNode + " -> " + self.endNode + \
+            " [ label=\"" + str(self.weight) + "\" ];"
+
     def toString(self):
         return self.startNode + " -> " + self.endNode + ": " + str(self.weight)
 
@@ -172,6 +184,11 @@ class Edge:
             self.startNode = self.endNode
             self.endNode = tempNode
 
+argparser = argparse.ArgumentParser()
+argparser.add_argument("-g", "--graphviz", action='store_true')
+argparser.add_argument("-v", "--verbose", action='store_true')
+argparser.add_argument("filename", action='store_true')
+args = argparser.parse_args()
 
 edges = []
 emptyNodes = []
@@ -189,17 +206,16 @@ for line in sys.stdin:
             exit(1)
     i += 1
 
-# TODO: set verbose with a parameter
-verbose = False
-edges = splitStarNodes(edges, emptyNodes)
+
+edges = splitStarNodes(edges, emptyNodes, args.verbose)
 
 weights = getNodeWeights(edges)
 sortedWeights = sort(weights)
 removeZeroWeights(sortedWeights)
 # TODO: assert weight sum == zero
-if verbose:
+if args.verbose:
     print "Node weights: ", sortedWeights
 
 edges = weightsToEdges(sortedWeights, weights)
 # TODO: assert edge sum == zero
-printEdges(edges)
+printEdges(edges, args. graphviz)

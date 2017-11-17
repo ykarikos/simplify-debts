@@ -1,0 +1,4 @@
+Digraph G {
+Fred -> Michael [ label="20.0" ];
+Peter -> Michael [ label="10.0" ];
+}

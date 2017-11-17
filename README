@@ -18,6 +18,10 @@ Bob -> Joe: 16.4
 Sue -> Joe: 16.4
 Ellen -> Joe: 4.2
 
+Run with graphviz:
+------------------
+
+$ src/simplify.py -g <debts.txt |dot -Tpng >debts.png
 
 Run tests:
 ----------
