@@ -20,6 +20,7 @@
 import sys
 import re
 import argparse
+from functools import reduce
 
 def printEdges(edges, graphviz):
     if graphviz:
@@ -189,6 +190,7 @@ argparser.add_argument("-g", "--graphviz", action='store_true')
 argparser.add_argument("-v", "--verbose", action='store_true')
 argparser.add_argument("filename", action='store_true')
 args = argparser.parse_args()
+verbose = args.verbose and not args.graphviz
 
 edges = []
 emptyNodes = []
@@ -207,15 +209,19 @@ for line in sys.stdin:
     i += 1
 
 
-edges = splitStarNodes(edges, emptyNodes, args.verbose and not args.graphviz)
+edges = splitStarNodes(edges, emptyNodes, verbose)
 
 weights = getNodeWeights(edges)
 sortedWeights = sort(weights)
 removeZeroWeights(sortedWeights)
-# TODO: assert weight sum == zero
-if args.verbose and not args.graphviz:
+
+if len(sortedWeights) > 0:
+    assert round(reduce((lambda x, y: x + y), map(lambda x: x[0], sortedWeights)), 10) == 0.0
+if verbose:
     print "Node weights: ", sortedWeights
 
 edges = weightsToEdges(sortedWeights, weights)
-# TODO: assert edge sum == zero
+
+if len(edges) > 0 and verbose:
+    print "Total money transacted: ", reduce((lambda x, y: x + y), map(lambda x: x.weight, edges))
 printEdges(edges, args. graphviz)

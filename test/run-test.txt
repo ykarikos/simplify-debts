@@ -16,7 +16,7 @@ Simplify all  [Documentation]  Run simplify for all test files
     \    Simplify  ${inputFile}
 
 Simplify graphviz  [Documentation]  Run simplify with graphviz parameter
-	${output} =  Run Cmd  ${PROG} -g <input/simple.txt
+	${output} =  Run Cmd  ${PROG} -g -v <input/simple.txt
 	${expectedOutput} =  Get File  output/simple-graphviz.txt
 	Should Be Equal As Strings  ${output}  ${expectedOutput}
 
