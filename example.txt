@@ -1,0 +1,7 @@
+# Everyone owes Joe
+* -> Joe: 16.80
+Sue -> Joe: 24.40
+Bob -> Sue: 12.20
+# Ellen is part of everyone
+Ellen
+
