@@ -14,7 +14,7 @@ Ellen
 
 2. Run:
 $ src/simplify.py <debts.txt
-ob -> Joe: 16.4
+Bob -> Joe: 16.4
 Sue -> Joe: 16.4
 Ellen -> Joe: 4.2
 
