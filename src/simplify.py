@@ -207,13 +207,13 @@ for line in sys.stdin:
     i += 1
 
 
-edges = splitStarNodes(edges, emptyNodes, args.verbose)
+edges = splitStarNodes(edges, emptyNodes, args.verbose and not args.graphviz)
 
 weights = getNodeWeights(edges)
 sortedWeights = sort(weights)
 removeZeroWeights(sortedWeights)
 # TODO: assert weight sum == zero
-if args.verbose:
+if args.verbose and not args.graphviz:
     print "Node weights: ", sortedWeights
 
 edges = weightsToEdges(sortedWeights, weights)
