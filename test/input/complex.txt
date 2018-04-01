@@ -1,0 +1,8 @@
+* -> Sue: 1200
+* -> Bob: 5400
+Joe -> Bob: 12
+Bob -> Sue: 90
+Michael -> Sue: 294
+Ellen -> Sue: 24
+Michael -> *: 3045
+Trevor

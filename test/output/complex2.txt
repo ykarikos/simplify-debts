@@ -1,0 +1,5 @@
+Michael -> Bob: 1294.0
+Bob -> Ellen: 1172.0
+Ellen -> Joe: 996.0
+Joe -> Trevor: 808.0
+Trevor -> Sue: 608.0

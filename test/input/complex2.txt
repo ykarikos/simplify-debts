@@ -1,0 +1,6 @@
+Michael -> *: 1200
+Joe -> Bob: 12
+Bob -> Sue: 90
+Michael -> Sue: 294
+Ellen -> Sue: 24
+Trevor
