@@ -4,7 +4,7 @@
 # This program is licensed under Version 2 of the GPL.
 
 # Simplify debts by minimizing transactions.
-# 
+#
 # Use following input from stdin:
 #
 # * -> Foo: 15.50
@@ -55,9 +55,9 @@ def getNodeWeights(edges):
 
 def findGreaterWeight(weightComp, weights):
     for node, weight in weights.iteritems():
-        if weight > weightComp:
+        if weight >= weightComp:
             return node
-    raise NodeError, 'Edge not found'    
+    raise NodeError, 'Edge not found'
 
 class NodeError(Exception):
     def __init__(self, value):
@@ -89,8 +89,9 @@ def weightsToEdges(sortedWeights, weights):
                 continue
             except NodeError:
                 pass
-        edges.append(Edge(currentNode, sortedWeights[i+1][1], delta))
-        input = delta
+        if delta > 0:
+            edges.append(Edge(currentNode, sortedWeights[i+1][1], delta))
+            input = delta
         i += 1
     return edges
 
@@ -113,7 +114,7 @@ def splitStarNodes(edges, emptyNodes, verbose):
     uniqueNodes = uniqueList(nodes)
     if verbose:
         print "Found these", len(uniqueNodes), "unique nodes:", uniqueNodes
-    
+
     i = 0
     while i < len(edges):
         if edges[i].startNode == "*": # * -> Foo: 10
@@ -156,7 +157,7 @@ class Edge:
         self.startNode = startNode
         self.endNode = endNode
         self.weight = weight
- 
+
     def toGraphvizString(self):
         return self.startNode + " -> " + self.endNode + \
             " [ label=\"" + str(self.weight) + "\" ];"
@@ -169,7 +170,7 @@ class Edge:
             return self.endNode
         else:
             return self.startNode
-    
+
     def equalEdges(self, other):
         if self.startNode == other.startNode and self.endNode == other.endNode:
             return 1
@@ -203,7 +204,7 @@ for line in sys.stdin:
             emptyNodes.append(line.rstrip())
         elif searchComment.match(line):
             pass
-        else: 
+        else:
             print >> sys.stderr, "Invalid input on line", i, ": " + line.rstrip()
             exit(1)
     i += 1
