@@ -74,23 +74,24 @@ class EdgeException(Exception):
 def weightsToEdges(sortedWeights, weights):
     i = 0
     edges = []
+    target = ""
     while i+1 < len(sortedWeights):
         currentNode = sortedWeights[i][1]
         currentWeight = weights[currentNode]
+        if currentWeight == 0:
+            i += 1
+            continue;
+
         transact = abs(currentWeight)
         if currentWeight < 0:
             try:
-                node = findGreaterWeight(transact, weights)
-                edges.append(Edge(currentNode, node, transact))
-                weights[node] += currentWeight
-                i += 1
-                continue
+                target = findGreaterWeight(transact, weights)
             except NodeError:
-                pass
-        if currentWeight != 0:
+                target = sortedWeights[i+1][1]
+        else:
             target = sortedWeights[i+1][1]
-            edges.append(Edge(currentNode, target, transact))
-            weights[target] += currentWeight
+        edges.append(Edge(currentNode, target, transact))
+        weights[target] += currentWeight
         i += 1
     return edges
 
