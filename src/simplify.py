@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# simplify.py, (C) 2007-2009 Yrjo Kari-Koskinen <ykk@peruna.fi>
+# simplify.py, (C) 2007-2018 Yrjo Kari-Koskinen <ykk@peruna.fi>
 #
 # This program is licensed under Version 2 of the GPL.
 
